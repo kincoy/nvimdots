@@ -63,12 +63,12 @@ function Packer:load_packer()
     packer.reset()
     local use = packer.use
     self:load_plugins()
-    use({"wbthomason/packer.nvim", opt = true})
+    use({"wbthomason/packer.nvim", opt = false})
     for _, repo in ipairs(self.repos) do use(repo) end
 end
 
 function Packer:init_ensure_plugins()
-    local packer_dir = data_dir .. "pack/packer/opt/packer.nvim"
+    local packer_dir = data_dir .. "pack/packer/start/packer.nvim"
     local state = uv.fs_stat(packer_dir)
     if not state then
         local cmd = "!git clone git@github.com:wbthomason/packer.nvim.git " ..
