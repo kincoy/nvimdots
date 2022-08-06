@@ -27,7 +27,24 @@ local plugins_map = {
     ["n|<Leader>fg"] = map_cu("Telescope git_files"):with_noremap()
         :with_silent(),
     ["n|<Leader>fz"] = map_cu("Telescope zoxide list"):with_noremap()
-        :with_silent()
+        :with_silent(),
+    -- Plugin Hop
+    ["n|<leader>c"] = map_cu("HopChar1"):with_noremap(),
+    ["n|<leader>cc"] = map_cu("HopChar2"):with_noremap(),
+    -- Plugin EasyAlign
+    ["n|ga"] = map_cmd("v:lua.enhance_align('nga')"):with_expr(),
+    ["x|ga"] = map_cmd("v:lua.enhance_align('xga')"):with_expr(),
+    -- Plugin accelerate-jk
+    ["n|j"] = map_cmd("v:lua.enhance_jk_move('j')"):with_silent():with_expr(),
+    ["n|k"] = map_cmd("v:lua.enhance_jk_move('k')"):with_silent():with_expr(),
+    -- Plugin auto_session
+    ["n|<leader>ss"] = map_cu("SaveSession"):with_noremap():with_silent(),
+    ["n|<leader>sr"] = map_cu("RestoreSession"):with_noremap():with_silent(),
+    ["n|<leader>sd"] = map_cu("DeleteSession"):with_noremap():with_silent(),
+    -- Plugin Diffview
+    ["n|<leader>D"] = map_cr("DiffviewOpen"):with_silent():with_noremap(),
+    ["n|<leader><leader>D"] = map_cr("DiffviewClose"):with_silent()
+        :with_noremap()
 }
 
 return plugins_map

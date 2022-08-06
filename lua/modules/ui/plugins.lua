@@ -34,8 +34,7 @@ ui["akinsho/bufferline.nvim"] = {
     opt = false,
     tag = "*",
     event = "BufReadPost",
-    config = conf.nvim_bufferline,
-    requires = {"moll/vim-bbye", opt = true}
+    config = conf.nvim_bufferline
 }
 ui["kyazdani42/nvim-tree.lua"] = {
     opt = false,
