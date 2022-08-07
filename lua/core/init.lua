@@ -68,7 +68,6 @@ local load_core = function()
 
     require("core.options")
     require("keymap")
-    -- require("core.event")
     pack.load_compile()
 
     vim.cmd([[colorscheme tokyonight]])

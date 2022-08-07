@@ -6,33 +6,15 @@ local map_cmd = bind.map_cmd
 -- plugins map
 local plugins_map = {
     -- Bufferline
-    ["n|gb"] = map_cr("BufferLinePick"):with_noremap():with_silent(),
-    ["n|<M-j>"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent(),
-    ["n|<M-k>"] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent(),
-    ["n|<M-S-j>"] = map_cr("BufferLineMoveNext"):with_noremap():with_silent(),
-    ["n|<M-S-k>"] = map_cr("BufferLineMovePrev"):with_noremap():with_silent(),
-    ["n|<leader>be"] = map_cr("BufferLineSortByExtension"):with_noremap(),
-    ["n|<leader>bd"] = map_cr("BufferLineSortByDirectory"):with_noremap(),
-    ["n|<A-1>"] = map_cr("BufferLineGoToBuffer 1"):with_noremap():with_silent(),
-    ["n|<A-2>"] = map_cr("BufferLineGoToBuffer 2"):with_noremap():with_silent(),
-    ["n|<A-3>"] = map_cr("BufferLineGoToBuffer 3"):with_noremap():with_silent(),
-    ["n|<A-4>"] = map_cr("BufferLineGoToBuffer 4"):with_noremap():with_silent(),
-    ["n|<A-5>"] = map_cr("BufferLineGoToBuffer 5"):with_noremap():with_silent(),
-    ["n|<A-6>"] = map_cr("BufferLineGoToBuffer 6"):with_noremap():with_silent(),
-    ["n|<A-7>"] = map_cr("BufferLineGoToBuffer 7"):with_noremap():with_silent(),
-    ["n|<A-8>"] = map_cr("BufferLineGoToBuffer 8"):with_noremap():with_silent(),
-    ["n|<A-9>"] = map_cr("BufferLineGoToBuffer 9"):with_noremap():with_silent(),
+    ["n|<C-.>"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent(),
+    ["n|<C-,>"] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent(),
     -- Lsp mapp work when insertenter and lsp start
-    ["n|<leader>li"] = map_cr("LspInfo"):with_noremap():with_silent()
-        :with_nowait(),
-    ["n|<leader>lr"] = map_cr("LspRestart"):with_noremap():with_silent()
-        :with_nowait(),
     ["n|g["] = map_cr("Lspsaga diagnostic_jump_next"):with_noremap()
         :with_silent(),
     ["n|g]"] = map_cr("Lspsaga diagnostic_jump_prev"):with_noremap()
         :with_silent(),
     ["n|gs"] = map_cr("Lspsaga signature_help"):with_noremap():with_silent(),
-    ["n|gr"] = map_cr("Lspsaga rename"):with_noremap():with_silent(),
+    ["n|<leader>rn"] = map_cr("Lspsaga rename"):with_noremap():with_silent(),
     ["n|K"] = map_cr("Lspsaga hover_doc"):with_noremap():with_silent(),
     ["n|<C-Up>"] = map_cr(
         "lua require('lspsaga.action').smart_scroll_with_saga(-1)"):with_noremap()
@@ -47,7 +29,9 @@ local plugins_map = {
     ["n|gd"] = map_cr("Lspsaga preview_definition"):with_noremap():with_silent(),
     ["n|gD"] = map_cr("lua vim.lsp.buf.definition()"):with_noremap()
         :with_silent(),
-    ["n|gh"] = map_cr("lua vim.lsp.buf.references()"):with_noremap()
+    ["n|gr"] = map_cr("lua vim.lsp.buf.references()"):with_noremap()
+        :with_silent(),
+    ["n|gi"] = map_cr("lua vim.lsp.buf.implementation()"):with_noremap()
         :with_silent(),
     ["n|<Leader>G"] = map_cu("Git"):with_noremap():with_silent(),
     ["n|gps"] = map_cr("G push"):with_noremap():with_silent(),
@@ -56,6 +40,10 @@ local plugins_map = {
     ["n|<C-n>"] = map_cr("NvimTreeToggle"):with_noremap():with_silent(),
     ["n|<Leader>nf"] = map_cr("NvimTreeFindFile"):with_noremap():with_silent(),
     ["n|<Leader>nr"] = map_cr("NvimTreeRefresh"):with_noremap():with_silent(),
+    -- Plugin Aerial
+    ["n|<C-t>"] = map_cr("AerialToggle! right"):with_noremap():with_silent(),
+    -- Plugin Undotree
+    ["n|<Leader>u"] = map_cr("UndotreeToggle"):with_noremap():with_silent(),
     -- Plugin Telescope
     ["n|<Leader>fp"] = map_cu(
         "lua require('telescope').extensions.project.project{}"):with_noremap()
@@ -66,11 +54,12 @@ local plugins_map = {
     ["n|<Leader>fe"] = map_cu("Telescope oldfiles"):with_noremap():with_silent(),
     ["n|<Leader>ff"] = map_cu("Telescope find_files"):with_noremap()
         :with_silent(),
-    ["n|<Leader>sc"] = map_cu("Telescope colorscheme"):with_noremap()
+    ["n|<Leader>fc"] = map_cu("Telescope colorscheme"):with_noremap()
         :with_silent(),
     ["n|<Leader>fn"] = map_cu(":enew"):with_noremap():with_silent(),
     ["n|<Leader>fw"] = map_cu("Telescope live_grep"):with_noremap()
         :with_silent(),
+    ["n|<Leader>fb"] = map_cu("Telescope buffers"):with_noremap():with_silent(),
     ["n|<Leader>fg"] = map_cu("Telescope git_files"):with_noremap()
         :with_silent(),
     ["n|<Leader>fz"] = map_cu("Telescope zoxide list"):with_noremap()
@@ -99,8 +88,10 @@ local plugins_map = {
     ["n|<leader><leader>D"] = map_cr("DiffviewClose"):with_silent()
         :with_noremap(),
     -- Plugin Tabout
-    ["i|<A-l>"] = map_cmd([[<Plug>(TaboutMulti)]]):with_silent(),
-    ["i|<A-h>"] = map_cmd([[<Plug>(TaboutBackMulti)]]):with_silent()
+    ["i|<C-'>"] = map_cmd([[<Plug>(TaboutMulti)]]):with_silent(),
+    ["i|<C-;>"] = map_cmd([[<Plug>(TaboutBackMulti)]]):with_silent(),
+    -- Plugin BuffDelete
+    ["n|<C-w>"] = map_cr("Bdelete!"):with_noremap():with_silent()
 }
 
 return plugins_map

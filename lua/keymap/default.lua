@@ -26,6 +26,8 @@ local def_map = {
     ["n|<C-l>"] = map_cmd("<C-w>l"):with_noremap(),
     ["n|<C-j>"] = map_cmd("<C-w>j"):with_noremap(),
     ["n|<C-k>"] = map_cmd("<C-w>k"):with_noremap(),
+    ["n|<C-d>"] = map_cmd("12j"):with_noremap(),
+    ["n|<C-u>"] = map_cmd("12k"):with_noremap(),
     ["n|s["] = map_cr("vertical resize -5"):with_silent(),
     ["n|s]"] = map_cr("vertical resize +5"):with_silent(),
     ["n|s;"] = map_cr("resize -2"):with_silent(),
@@ -35,7 +37,6 @@ local def_map = {
     ["n|<leader>,"] = map_cr("nohlsearch"):with_noremap():with_silent(),
     -- Insert
     ["i|jj"] = map_cmd("<Esc>"),
-    ["i|<C-b>"] = map_cmd("<Left>"):with_noremap(),
     ["i|<C-a>"] = map_cmd("<ESC>^i"):with_noremap(),
     ["i|<C-s>"] = map_cmd("<Esc>:w<CR>"),
     ["i|<C-q>"] = map_cmd("<Esc>:wq<CR>"),
@@ -43,7 +44,7 @@ local def_map = {
     ["c|<C-b>"] = map_cmd("<Left>"):with_noremap(),
     ["c|<C-f>"] = map_cmd("<Right>"):with_noremap(),
     ["c|<C-a>"] = map_cmd("<Home>"):with_noremap(),
-    ["c|<C-e>"] = map_cmd("<End>"):with_noremap(),
+    ["c|<C-k>"] = map_cmd("<End>"):with_noremap(),
     ["c|<C-d>"] = map_cmd("<Del>"):with_noremap(),
     ["c|<C-h>"] = map_cmd("<BS>"):with_noremap(),
     ["c|<C-t>"] = map_cmd([[<C-R>=expand("%:p:h") . "/" <CR>]]):with_noremap(),
@@ -53,7 +54,8 @@ local def_map = {
     ["v|J"] = map_cmd(":m '>+1<cr>gv=gv"),
     ["v|K"] = map_cmd(":m '<-2<cr>gv=gv"),
     ["v|<"] = map_cmd("<gv"),
-    ["v|>"] = map_cmd(">gv")
+    ["v|>"] = map_cmd(">gv"),
+    ["v|<C-c>"] = map_cmd("\"+y"):with_noremap():with_silent()
 }
 
 return def_map

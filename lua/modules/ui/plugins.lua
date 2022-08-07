@@ -8,11 +8,7 @@ ui["kyazdani42/nvim-web-devicons"] = {opt = false}
 ui["rcarriga/nvim-notify"] = {opt = false, config = conf.notify}
 ui["hoob3rt/lualine.nvim"] = {opt = false, config = conf.lualine}
 ui["arkav/lualine-lsp-progress"] = {opt = false}
-ui["SmiteshP/nvim-navic"] = {
-    opt = true,
-    after = "nvim-treesitter",
-    config = conf.nvim_navic
-}
+
 ui["goolord/alpha-nvim"] = {
     opt = true,
     event = "BufWinEnter",

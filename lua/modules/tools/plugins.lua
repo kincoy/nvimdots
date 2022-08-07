@@ -29,7 +29,18 @@ tools["jvgrootveld/telescope-zoxide"] = {
     opt = true,
     after = "telescope-frecency.nvim"
 }
+tools["folke/which-key.nvim"] = {
+    opt = true,
+    keys = ",",
+    config = conf.which_key
+}
 
 tools["dstein64/vim-startuptime"] = {opt = true, cmd = "StartupTime"}
+tools["gelguy/wilder.nvim"] = {
+    event = "CmdlineEnter",
+    config = conf.wilder,
+    requires = {{"romgrk/fzy-lua-native", after = "wilder.nvim"}}
+}
+tools["nathom/filetype.nvim"] = {opt = false, config = conf.filetype}
 
 return tools
