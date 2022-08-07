@@ -163,8 +163,8 @@ function config.notify()
     vim.notify = notify
 end
 
-function config.nvim_gps()
-    require("nvim-gps").setup({
+function config.nvim_navic()
+    require("nvim-navic").setup({
         icons = {
             ["class-name"] = " ", -- Classes and class-like objects
             ["function-name"] = " ", -- Functions
@@ -413,4 +413,7 @@ function config.indent_blankline()
     -- because lazy load indent-blankline so need readd this autocmd
     vim.cmd("autocmd CursorMoved * IndentBlanklineRefresh")
 end
+
+function config.fidget() require("fidget").setup({}) end
+
 return config

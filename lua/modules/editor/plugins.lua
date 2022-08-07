@@ -58,7 +58,13 @@ editor["edluffy/specs.nvim"] = {
     event = "CursorMoved",
     config = conf.specs
 }
-
+editor["abecodes/tabout.nvim"] = {
+    opt = true,
+    event = "InsertEnter",
+    wants = "nvim-treesitter",
+    after = "nvim-cmp",
+    config = conf.tabout
+}
 editor["sindrets/diffview.nvim"] = {opt = true, cmd = {"DiffviewOpen"}}
 editor["luukvbaal/stabilize.nvim"] = {opt = true, event = "BufReadPost"}
 editor["tpope/vim-fugitive"] = {opt = true, cmd = {"Git", "G"}}
