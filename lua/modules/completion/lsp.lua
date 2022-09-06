@@ -13,131 +13,145 @@ local mason_lsp = require("mason-lspconfig")
 
 mason.setup()
 mason_lsp.setup({
-    ensure_installed = {
-        "bash-language-server", "efm", "lua-language-server", "clangd", "gopls",
-        "pyright"
-    }
+	ensure_installed = {
+		"bash-language-server",
+		"efm",
+		"lua-language-server",
+		"clangd",
+		"gopls",
+		"pyright",
+	},
 })
 
 -- Override diagnostics symbol
 
 saga.init_lsp_saga({
-    error_sign = "",
-    warn_sign = "",
-    hint_sign = "",
-    infor_sign = ""
+	error_sign = "",
+	warn_sign = "",
+	hint_sign = "",
+	infor_sign = "",
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 local function custom_attach(client)
-    require("lsp_signature").on_attach({
-        bind = true,
-        use_lspsaga = false,
-        floating_window = true,
-        fix_pos = true,
-        hint_enable = true,
-        hi_parameter = "Search",
-        handler_opts = {"double"}
-    })
-    require("aerial").on_attach(client)
-    require("illuminate").on_attach(client)
+	require("lsp_signature").on_attach({
+		bind = true,
+		use_lspsaga = false,
+		floating_window = true,
+		fix_pos = true,
+		hint_enable = true,
+		hi_parameter = "Search",
+		handler_opts = { "double" },
+	})
+	require("aerial").on_attach(client)
+	require("illuminate").on_attach(client)
 end
 
 -- Override server settings here
 
 for _, server in ipairs(mason_lsp.get_installed_servers()) do
-    if server == "gopls" then
-        nvim_lsp.gopls.setup({
-            on_attach = custom_attach,
-            flags = {debounce_text_changes = 500},
-            capabilities = capabilities,
-            cmd = {"gopls"},
-            settings = {
-                gopls = {
-                    usePlaceholders = true,
-                    analyses = {
-                        nilness = true,
-                        shadow = true,
-                        unusedparams = true,
-                        unusewrites = true
-                    }
-                }
-            }
-        })
-    elseif server == "sumneko_lua" then
-        nvim_lsp.sumneko_lua.setup({
-            capabilities = capabilities,
-            on_attach = custom_attach,
-            settings = {
-                Lua = {
-                    diagnostics = {globals = {"vim", "packer_plugins"}},
-                    workspace = {
-                        library = {
-                            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                            [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
-                        },
-                        maxPreload = 100000,
-                        preloadFileSize = 10000
-                    },
-                    telemetry = {enable = false}
-                }
-            }
-        })
-    elseif server == "jsonls" then
-        nvim_lsp.jsonls.setup({
-            flags = {debounce_text_changes = 500},
-            capabilities = capabilities,
-            on_attach = custom_attach,
-            settings = {
-                json = {
-                    -- Schemas https://www.schemastore.org
-                    schemas = {
-                        {
-                            fileMatch = {"package.json"},
-                            url = "https://json.schemastore.org/package.json"
-                        }, {
-                            fileMatch = {"tsconfig*.json"},
-                            url = "https://json.schemastore.org/tsconfig.json"
-                        }, {
-                            fileMatch = {
-                                ".prettierrc", ".prettierrc.json",
-                                "prettier.config.json"
-                            },
-                            url = "https://json.schemastore.org/prettierrc.json"
-                        }, {
-                            fileMatch = {".eslintrc", ".eslintrc.json"},
-                            url = "https://json.schemastore.org/eslintrc.json"
-                        }, {
-                            fileMatch = {
-                                ".babelrc", ".babelrc.json", "babel.config.json"
-                            },
-                            url = "https://json.schemastore.org/babelrc.json"
-                        },
-                        {
-                            fileMatch = {"lerna.json"},
-                            url = "https://json.schemastore.org/lerna.json"
-                        }, {
-                            fileMatch = {
-                                ".stylelintrc", ".stylelintrc.json",
-                                "stylelint.config.json"
-                            },
-                            url = "http://json.schemastore.org/stylelintrc.json"
-                        }, {
-                            fileMatch = {"/.github/workflows/*"},
-                            url = "https://json.schemastore.org/github-workflow.json"
-                        }
-                    }
-                }
-            }
-        })
-    else
-        nvim_lsp[server].setup({
-            capabilities = capabilities,
-            on_attach = custom_attach
-        })
-    end
+	if server == "gopls" then
+		nvim_lsp.gopls.setup({
+			on_attach = custom_attach,
+			flags = { debounce_text_changes = 500 },
+			capabilities = capabilities,
+			cmd = { "gopls" },
+			settings = {
+				gopls = {
+					usePlaceholders = true,
+					analyses = {
+						nilness = true,
+						shadow = true,
+						unusedparams = true,
+						unusewrites = true,
+					},
+				},
+			},
+		})
+	elseif server == "sumneko_lua" then
+		nvim_lsp.sumneko_lua.setup({
+			capabilities = capabilities,
+			on_attach = custom_attach,
+			settings = {
+				Lua = {
+					diagnostics = { globals = { "vim", "packer_plugins" } },
+					workspace = {
+						library = {
+							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+							[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+						},
+						maxPreload = 100000,
+						preloadFileSize = 10000,
+					},
+					telemetry = { enable = false },
+				},
+			},
+		})
+	elseif server == "jsonls" then
+		nvim_lsp.jsonls.setup({
+			flags = { debounce_text_changes = 500 },
+			capabilities = capabilities,
+			on_attach = custom_attach,
+			settings = {
+				json = {
+					-- Schemas https://www.schemastore.org
+					schemas = {
+						{
+							fileMatch = { "package.json" },
+							url = "https://json.schemastore.org/package.json",
+						},
+						{
+							fileMatch = { "tsconfig*.json" },
+							url = "https://json.schemastore.org/tsconfig.json",
+						},
+						{
+							fileMatch = {
+								".prettierrc",
+								".prettierrc.json",
+								"prettier.config.json",
+							},
+							url = "https://json.schemastore.org/prettierrc.json",
+						},
+						{
+							fileMatch = { ".eslintrc", ".eslintrc.json" },
+							url = "https://json.schemastore.org/eslintrc.json",
+						},
+						{
+							fileMatch = {
+								".babelrc",
+								".babelrc.json",
+								"babel.config.json",
+							},
+							url = "https://json.schemastore.org/babelrc.json",
+						},
+						{
+							fileMatch = { "lerna.json" },
+							url = "https://json.schemastore.org/lerna.json",
+						},
+						{
+							fileMatch = {
+								".stylelintrc",
+								".stylelintrc.json",
+								"stylelint.config.json",
+							},
+							url = "http://json.schemastore.org/stylelintrc.json",
+						},
+						{
+							fileMatch = { "/.github/workflows/*" },
+							url = "https://json.schemastore.org/github-workflow.json",
+						},
+					},
+				},
+			},
+		})
+	else
+		nvim_lsp[server].setup({
+			capabilities = capabilities,
+			on_attach = custom_attach,
+		})
+	end
 end
 
 local efmls = require("efmls-configs")
@@ -145,9 +159,9 @@ local efmls = require("efmls-configs")
 -- Init `efm-langserver` here.
 
 efmls.init({
-    on_attach = custom_attach,
-    capabilities = capabilities,
-    init_options = {documentFormatting = true, codeAction = true}
+	on_attach = custom_attach,
+	capabilities = capabilities,
+	init_options = { documentFormatting = true, codeAction = true },
 })
 
 -- Require `efmls-configs-nvim`'s config here
@@ -161,8 +175,8 @@ local shellcheck = require("efmls-configs.linters.shellcheck")
 local black = require("efmls-configs.formatters.black")
 local luafmt = require("efmls-configs.formatters.stylua")
 local clangfmt = {
-    formatCommand = "clang-format -style='{BasedOnStyle: LLVM, IndentWidth: 4}'",
-    formatStdin = true
+	formatCommand = "clang-format -style='{BasedOnStyle: LLVM, IndentWidth: 4}'",
+	formatStdin = true,
 }
 local prettier = require("efmls-configs.formatters.prettier")
 local shfmt = require("efmls-configs.formatters.shfmt")
@@ -174,33 +188,33 @@ local shfmt = require("efmls-configs.formatters.shfmt")
 -- Override default config here
 
 flake8 = vim.tbl_extend("force", flake8, {
-    prefix = "flake8: max-line-length=160, ignore F403 and F405",
-    lintStdin = true,
-    lintIgnoreExitCode = true,
-    lintFormats = {"%f:%l:%c: %t%n%n%n %m"},
-    lintCommand = "flake8 --max-line-length 160 --extend-ignore F403,F405 --format '%(path)s:%(row)d:%(col)d: %(code)s %(code)s %(text)s' --stdin-display-name ${INPUT} -"
+	prefix = "flake8: max-line-length=160, ignore F403 and F405",
+	lintStdin = true,
+	lintIgnoreExitCode = true,
+	lintFormats = { "%f:%l:%c: %t%n%n%n %m" },
+	lintCommand = "flake8 --max-line-length 160 --extend-ignore F403,F405 --format '%(path)s:%(row)d:%(col)d: %(code)s %(code)s %(text)s' --stdin-display-name ${INPUT} -",
 })
 
 -- Setup formatter and linter for efmls here
 
 efmls.setup({
-    vim = {formatter = vint},
-    lua = {formatter = luafmt},
-    c = {formatter = clangfmt, linter = clangtidy},
-    cpp = {formatter = clangfmt, linter = clangtidy},
-    python = {formatter = black},
-    vue = {formatter = prettier},
-    typescript = {formatter = prettier, linter = eslint},
-    javascript = {formatter = prettier, linter = eslint},
-    typescriptreact = {formatter = prettier, linter = eslint},
-    javascriptreact = {formatter = prettier, linter = eslint},
-    yaml = {formatter = prettier},
-    html = {formatter = prettier},
-    css = {formatter = prettier},
-    scss = {formatter = prettier},
-    sh = {formatter = shfmt, linter = shellcheck},
-    markdown = {formatter = prettier}
-    -- rust = {formatter = rustfmt},
+	vim = { formatter = vint },
+	lua = { formatter = luafmt },
+	c = { formatter = clangfmt, linter = clangtidy },
+	cpp = { formatter = clangfmt, linter = clangtidy },
+	python = { formatter = black },
+	vue = { formatter = prettier },
+	typescript = { formatter = prettier, linter = eslint },
+	javascript = { formatter = prettier, linter = eslint },
+	typescriptreact = { formatter = prettier, linter = eslint },
+	javascriptreact = { formatter = prettier, linter = eslint },
+	yaml = { formatter = prettier },
+	html = { formatter = prettier },
+	css = { formatter = prettier },
+	scss = { formatter = prettier },
+	sh = { formatter = shfmt, linter = shellcheck },
+	markdown = { formatter = prettier },
+	-- rust = {formatter = rustfmt},
 })
 
 formatting.configure_format_on_save()
