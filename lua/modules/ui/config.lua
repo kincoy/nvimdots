@@ -4,25 +4,15 @@ function config.alpha()
 	local dashboard = require("alpha.themes.dashboard")
 
 	dashboard.section.header.val = {
-		[[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-		[[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⣠⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-		[[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣡⣾⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣟⠻⣿⣿⣿⣿⣿⣿⣿⣿]],
-		[[⣿⣿⣿⣿⣿⣿⣿⣿⡿⢫⣷⣿⣿⣿⣿⣿⣿⣿⣾⣯⣿⡿⢧⡚⢷⣌⣽⣿⣿⣿⣿⣿⣶⡌⣿⣿⣿⣿⣿⣿]],
-		[[⣿⣿⣿⣿⣿⣿⣿⣿⠇⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣮⣇⣘⠿⢹⣿⣿⣿⣿⣿⣻⢿⣿⣿⣿⣿⣿]],
-		[[⣿⣿⣿⣿⣿⣿⣿⣿⠀⢸⣿⣿⡇⣿⣿⣿⣿⣿⣿⣿⣿⡟⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣻⣿⣿⣿⣿]],
-		[[⣿⣿⣿⣿⣿⣿⣿⡇⠀⣬⠏⣿⡇⢻⣿⣿⣿⣿⣿⣿⣿⣷⣼⣿⣿⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⢻⣿⣿⣿⣿]],
-		[[⣿⣿⣿⣿⣿⣿⣿⠀⠈⠁⠀⣿⡇⠘⡟⣿⣿⣿⣿⣿⣿⣿⣿⡏⠿⣿⣟⣿⣿⣿⣿⣿⣿⣿⣿⣇⣿⣿⣿⣿]],
-		[[⣿⣿⣿⣿⣿⣿⡏⠀⠀⠐⠀⢻⣇⠀⠀⠹⣿⣿⣿⣿⣿⣿⣩⡶⠼⠟⠻⠞⣿⡈⠻⣟⢻⣿⣿⣿⣿⣿⣿⣿]],
-		[[⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⢿⠀⡆⠀⠘⢿⢻⡿⣿⣧⣷⢣⣶⡃⢀⣾⡆⡋⣧⠙⢿⣿⣿⣟⣿⣿⣿⣿]],
-		[[⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⡥⠂⡐⠀⠁⠑⣾⣿⣿⣾⣿⣿⣿⡿⣷⣷⣿⣧⣾⣿⣿⣿⣿⣿⣿⣿]],
-		[[⣿⣿⡿⣿⣍⡴⠆⠀⠀⠀⠀⠀⠀⠀⠀⣼⣄⣀⣷⡄⣙⢿⣿⣿⣿⣿⣯⣶⣿⣿⢟⣾⣿⣿⢡⣿⣿⣿⣿⣿]],
-		[[⣿⡏⣾⣿⣿⣿⣷⣦⠀⠀⠀⢀⡀⠀⠀⠠⣭⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⣡⣾⣿⣿⢏⣾⣿⣿⣿⣿⣿]],
-		[[⣿⣿⣿⣿⣿⣿⣿⣿⡴⠀⠀⠀⠀⠀⠠⠀⠰⣿⣿⣿⣷⣿⠿⠿⣿⣿⣭⡶⣫⠔⢻⢿⢇⣾⣿⣿⣿⣿⣿⣿]],
-		[[⣿⣿⣿⡿⢫⣽⠟⣋⠀⠀⠀⠀⣶⣦⠀⠀⠀⠈⠻⣿⣿⣿⣾⣿⣿⣿⣿⡿⣣⣿⣿⢸⣾⣿⣿⣿⣿⣿⣿⣿]],
-		[[⡿⠛⣹⣶⣶⣶⣾⣿⣷⣦⣤⣤⣀⣀⠀⠀⠀⠀⠀⠀⠉⠛⠻⢿⣿⡿⠫⠾⠿⠋⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-		[[⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣀⡆⣠⢀⣴⣏⡀⠀⠀⠀⠉⠀⠀⢀⣠⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-		[[⠿⠛⠛⠛⠛⠛⠛⠻⢿⣿⣿⣿⣿⣯⣟⠷⢷⣿⡿⠋⠀⠀⠀⠀⣵⡀⢠⡿⠋⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-		[[⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⢿⣿⣿⠂⠀⠀⠀⠀⠀⢀⣽⣿⣿⣿⣿⣿⣿⣿⣍⠛⠿⣿⣿⣿⣿⣿⣿]],
+		[[　　　 　　/＾>》, -―‐‐＜＾}]],
+		[[　　　 　./:::/,≠´::::::ヽ.]],
+		[[　　　　/::::〃::::／}::丿ハ]],
+		[[　　　./:::::i{l|／　ﾉ／ }::}]],
+		[[　　 /:::::::瓜イ＞　´＜ ,:ﾉ]],
+		[[　 ./::::::|ﾉﾍ.{､　(_ﾌ_ノﾉイ＿]],
+		[[　 |:::::::|／}｀ｽ /          /]],
+		[[.　|::::::|(_:::つ/    Mac   /　neovim!]],
+		[[.￣￣￣￣￣￣￣＼/＿＿＿＿＿/￣￣￣￣￣]],
 	}
 
 	local function button(sc, txt, leader_txt, keybind, keybind_opts)
@@ -58,9 +48,6 @@ function config.alpha()
 
 	local leader = "comma"
 	dashboard.section.buttons.val = {
-		button("comma s c", " Scheme change", leader, "<cmd>Telescope colorscheme<cr>"),
-		button("comma f r", " File frecency", leader, "<cmd>Telescope frecency<cr>"),
-		button("comma f e", " File history", leader, "<cmd>Telescope oldfiles<cr>"),
 		button("comma f p", " Project find", leader, "<cmd>Telescope project<cr>"),
 		button("comma f f", " File find", leader, "<cmd>Telescope find_files<cr>"),
 		button("comma f n", " File new", leader, "<cmd>enew<cr>"),
@@ -146,37 +133,13 @@ end
 
 function config.notify()
 	local notify = require("notify")
-	notify.setup({
-		---@usage Animation style one of { "fade", "slide", "fade_in_slide_out", "static" }
-		stages = "slide",
-		---@usage Function called when a new window is opened, use for changing win settings/config
-		on_open = nil,
-		---@usage Function called when a window is closed
-		on_close = nil,
-		---@usage timeout for notifications in ms, default 5000
-		timeout = 2000,
-		-- Render function for notifications. See notify-render()
-		render = "default",
-		---@usage highlight behind the window for stages that change opacity
-		background_colour = "Normal",
-		---@usage minimum width for notification windows
-		minimum_width = 50,
-		---@usage Icons for the different levels
-		icons = {
-			ERROR = "",
-			WARN = "",
-			INFO = "",
-			DEBUG = "",
-			TRACE = "✎",
-		},
-	})
+	notify.setup({})
 
 	vim.notify = notify
 end
 
 function config.nvim_tree()
 	require("nvim-tree").setup({
-		-- 不显示 git 状态图标
 		git = { enable = true },
 		respect_buf_cwd = true,
 		auto_reload_on_write = true,
@@ -212,17 +175,7 @@ function config.nvim_bufferline()
 		options = {
 			close_command = "Bdelete! %d",
 			right_mouse_command = "Bdelete! %d",
-			number = "none",
-			modified_icon = "✥",
-			buffer_close_icon = "",
-			left_trunc_marker = "",
-			right_trunc_marker = "",
-			max_name_length = 14,
-			max_prefix_length = 13,
-			tab_size = 20,
-			show_buffer_close_icons = true,
 			show_buffer_icons = true,
-			show_tab_indicators = true,
 			diagnostics = "nvim_lsp",
 			always_show_bufferline = true,
 			separator_style = "thin",
@@ -234,9 +187,6 @@ function config.nvim_bufferline()
 					padding = 1,
 				},
 			},
-			diagnostics_indicator = function(count, level, diagnostics_dict, context)
-				return "(" .. count .. ")"
-			end,
 		},
 	})
 end
@@ -244,24 +194,9 @@ end
 function config.gitsigns()
 	require("gitsigns").setup({
 		signs = {
-			add = {
-				hl = "GitSignsAdd",
-				text = "│",
-				numhl = "GitSignsAddNr",
-				linehl = "GitSignsAddLn",
-			},
-			change = {
-				hl = "GitSignsChange",
-				text = "│",
-				numhl = "GitSignsChangeNr",
-				linehl = "GitSignsChangeLn",
-			},
-			delete = {
-				hl = "GitSignsDelete",
-				text = "_",
-				numhl = "GitSignsDeleteNr",
-				linehl = "GitSignsDeleteLn",
-			},
+			add = { hl = "GitSignsAdd", text = "│", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+			change = { hl = "GitSignsChange", text = "│", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+			delete = { hl = "GitSignsDelete", text = "_", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
 			topdelete = {
 				hl = "GitSignsDelete",
 				text = "‾",
@@ -275,38 +210,38 @@ function config.gitsigns()
 				linehl = "GitSignsChangeLn",
 			},
 		},
-		keymaps = {
-			-- Default keymap options
-			noremap = true,
-			buffer = true,
-			["n ]g"] = {
-				expr = true,
-				"&diff ? ']g' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'",
-			},
-			["n [g"] = {
-				expr = true,
-				"&diff ? '[g' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'",
-			},
-			["n <leader>hs"] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-			["v <leader>hs"] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-			["n <leader>hu"] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-			["n <leader>hr"] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-			["v <leader>hr"] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-			["n <leader>hR"] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
-			["n <leader>hp"] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-			["n <leader>hb"] = '<cmd>lua require"gitsigns".blame_line({full=true})<CR>',
-			-- Text objects
-			["o ih"] = ':<C-U>lua require"gitsigns".text_object()<CR>',
-			["x ih"] = ':<C-U>lua require"gitsigns".text_object()<CR>',
+		signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+		numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
+		linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+		word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
+		watch_gitdir = {
+			interval = 1000,
+			follow_files = true,
 		},
-		watch_gitdir = { interval = 1000, follow_files = true },
-		current_line_blame = true,
-		current_line_blame_opts = { delay = 1000, virtual_text_pos = "eol" },
+		attach_to_untracked = true,
+		current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+		current_line_blame_opts = {
+			virt_text = true,
+			virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+			delay = 1000,
+			ignore_whitespace = false,
+		},
+		current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
 		sign_priority = 6,
 		update_debounce = 100,
 		status_formatter = nil, -- Use default
-		word_diff = false,
-		diff_opts = { internal = true },
+		max_file_length = 40000, -- Disable if file is longer than this (in lines)
+		preview_config = {
+			-- Options passed to nvim_open_win
+			border = "single",
+			style = "minimal",
+			relative = "cursor",
+			row = 0,
+			col = 1,
+		},
+		yadm = {
+			enable = false,
+		},
 	})
 end
 function config.indent_blankline()
