@@ -54,9 +54,9 @@ end
 for _, server in ipairs(mason_lsp.get_installed_servers()) do
 	if server == "gopls" then
 		nvim_lsp.gopls.setup({
+			capabilities = capabilities,
 			on_attach = custom_attach,
 			flags = { debounce_text_changes = 500 },
-			capabilities = capabilities,
 			cmd = { "gopls" },
 			settings = {
 				gopls = {
@@ -168,25 +168,18 @@ efmls.init({
 
 local vint = require("efmls-configs.linters.vint")
 local clangtidy = require("efmls-configs.linters.clang_tidy")
-local eslint = require("efmls-configs.linters.eslint")
 local flake8 = require("efmls-configs.linters.flake8")
 local shellcheck = require("efmls-configs.linters.shellcheck")
-
 local black = require("efmls-configs.formatters.black")
 local luafmt = require("efmls-configs.formatters.stylua")
+local prettier = require("efmls-configs.formatters.prettier")
+local shfmt = require("efmls-configs.formatters.shfmt")
 local clangfmt = {
 	formatCommand = "clang-format -style='{BasedOnStyle: LLVM, IndentWidth: 4}'",
 	formatStdin = true,
 }
-local prettier = require("efmls-configs.formatters.prettier")
-local shfmt = require("efmls-configs.formatters.shfmt")
-
--- Add your own config for formatter and linter here
-
--- local rustfmt = require("modules.completion.efm.formatters.rustfmt")
 
 -- Override default config here
-
 flake8 = vim.tbl_extend("force", flake8, {
 	prefix = "flake8: max-line-length=160, ignore F403 and F405",
 	lintStdin = true,
@@ -202,19 +195,10 @@ efmls.setup({
 	lua = { formatter = luafmt },
 	c = { formatter = clangfmt, linter = clangtidy },
 	cpp = { formatter = clangfmt, linter = clangtidy },
-	python = { formatter = black },
-	vue = { formatter = prettier },
-	typescript = { formatter = prettier, linter = eslint },
-	javascript = { formatter = prettier, linter = eslint },
-	typescriptreact = { formatter = prettier, linter = eslint },
-	javascriptreact = { formatter = prettier, linter = eslint },
+	python = { formatter = black, linter = flake8 },
 	yaml = { formatter = prettier },
-	html = { formatter = prettier },
-	css = { formatter = prettier },
-	scss = { formatter = prettier },
 	sh = { formatter = shfmt, linter = shellcheck },
 	markdown = { formatter = prettier },
-	-- rust = {formatter = rustfmt},
 })
 
 formatting.configure_format_on_save()

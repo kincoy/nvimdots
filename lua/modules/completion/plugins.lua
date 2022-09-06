@@ -6,10 +6,12 @@ completion["neovim/nvim-lspconfig"] = {
 	event = "BufReadPre",
 	config = conf.nvim_lsp,
 }
+
 completion["creativenull/efmls-configs-nvim"] = {
 	opt = false,
 	requires = "neovim/nvim-lspconfig",
 }
+
 completion["williamboman/mason.nvim"] = {
 	requires = {
 		{ "williamboman/mason-lspconfig.nvim" },
@@ -19,8 +21,11 @@ completion["williamboman/mason.nvim"] = {
 		},
 	},
 }
+
 completion["kevinhwang91/nvim-bqf"] = { opt = true, ft = "qf", config = conf.bqf }
+
 completion["tami5/lspsaga.nvim"] = { opt = true, after = "nvim-lspconfig" }
+
 completion["stevearc/aerial.nvim"] = {
 	opt = true,
 	after = "nvim-lspconfig",
@@ -28,6 +33,7 @@ completion["stevearc/aerial.nvim"] = {
 }
 
 completion["ray-x/lsp_signature.nvim"] = { opt = true, after = "nvim-lspconfig" }
+
 completion["hrsh7th/nvim-cmp"] = {
 	config = conf.cmp,
 	event = "InsertEnter",
@@ -43,11 +49,13 @@ completion["hrsh7th/nvim-cmp"] = {
 		{ "kdheepak/cmp-latex-symbols", after = "cmp-buffer" },
 	},
 }
+
 completion["L3MON4D3/LuaSnip"] = {
 	after = "nvim-cmp",
 	config = conf.luasnip,
 	requires = "rafamadriz/friendly-snippets",
 }
+
 completion["windwp/nvim-autopairs"] = {
 	after = "nvim-cmp",
 	config = conf.autopairs,
