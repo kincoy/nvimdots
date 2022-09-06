@@ -55,7 +55,6 @@ function config.nvim_treesitter()
 			extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
 			max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
 		},
-		context_commentstring = { enable = true, enable_autocmd = false },
 		matchup = { enable = true },
 	})
 	require("nvim-treesitter.install").prefer_git = true
@@ -66,7 +65,6 @@ function config.nvim_treesitter()
 end
 
 function config.illuminate()
-	vim.g.Illuminate_highlightUnderCursor = 0
 	vim.g.Illuminate_ftblacklist = {
 		"help",
 		"dashboard",
@@ -111,7 +109,7 @@ function config.neoscroll()
 			"zb",
 		},
 		hide_cursor = true, -- Hide cursor while scrolling
-		stop_eof = false, -- Stop at <EOF> when scrolling downwards
+		stop_eof = true, -- Stop at <EOF> when scrolling downwards
 		use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
 		respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
 		cursor_scrolls_alone = false, -- The cursor will keep on scrolling even if the window cannot scroll further
@@ -138,7 +136,7 @@ end
 function config.specs()
 	require("specs").setup({
 		show_jumps = true,
-		min_jump = 10,
+		min_jump = 30,
 		popup = {
 			delay_ms = 0, -- delay before popup displays
 			inc_ms = 10, -- time increments used for fade/resize effects
