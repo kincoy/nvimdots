@@ -2,6 +2,33 @@ local bind = require("keymap.bind")
 local map_cr = bind.map_cr
 local map_cu = bind.map_cu
 local map_cmd = bind.map_cmd
+local vim = vim
+
+local t = function(str)
+	return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+_G.enhance_jk_move = function(key)
+	local map = key == "j" and "<Plug>(accelerated_jk_gj)" or "<Plug>(accelerated_jk_gk)"
+	return t(map)
+end
+
+_G.enhance_ft_move = function(key)
+	local map = {
+		f = "<Plug>(eft-f)",
+		F = "<Plug>(eft-F)",
+		t = "<Plug>(eft-t)",
+		T = "<Plug>(eft-T)",
+		[";"] = "<Plug>(eft-repeat)",
+	}
+	return t(map[key])
+end
+
+_G.enhance_align = function(key)
+	vim.cmd([[packadd vim-easy-align]])
+	local map = { ["nga"] = "<Plug>(EasyAlign)", ["xga"] = "<Plug>(EasyAlign)" }
+	return t(map[key])
+end
 
 -- plugins map
 local plugins_map = {
@@ -14,8 +41,6 @@ local plugins_map = {
 	["n|gs"] = map_cr("Lspsaga signature_help"):with_noremap():with_silent(),
 	["n|<leader>rn"] = map_cr("Lspsaga rename"):with_noremap():with_silent(),
 	["n|K"] = map_cr("Lspsaga hover_doc"):with_noremap():with_silent(),
-	["n|<C-Up>"] = map_cr("lua require('lspsaga.action').smart_scroll_with_saga(-1)"):with_noremap():with_silent(),
-	["n|<C-Down>"] = map_cr("lua require('lspsaga.action').smart_scroll_with_saga(1)"):with_noremap():with_silent(),
 	["n|<leader>ca"] = map_cr("Lspsaga code_action"):with_noremap():with_silent(),
 	["v|<leader>ca"] = map_cu("Lspsaga range_code_action"):with_noremap():with_silent(),
 	["n|gd"] = map_cr("Lspsaga preview_definition"):with_noremap():with_silent(),
@@ -23,19 +48,14 @@ local plugins_map = {
 	["n|gr"] = map_cr("lua vim.lsp.buf.references()"):with_noremap():with_silent(),
 	["n|gi"] = map_cr("lua vim.lsp.buf.implementation()"):with_noremap():with_silent(),
 	["n|<Leader>G"] = map_cu("Git"):with_noremap():with_silent(),
-	["n|gps"] = map_cr("G push"):with_noremap():with_silent(),
-	["n|gpl"] = map_cr("G pull"):with_noremap():with_silent(),
 	-- Plugin nvim-tree
 	["n|<C-n>"] = map_cr("NvimTreeToggle"):with_noremap():with_silent(),
-	["n|<Leader>nf"] = map_cr("NvimTreeFindFile"):with_noremap():with_silent(),
-	["n|<Leader>nr"] = map_cr("NvimTreeRefresh"):with_noremap():with_silent(),
 	-- Plugin Aerial
-	["n|<C-t>"] = map_cr("AerialToggle! right"):with_noremap():with_silent(),
+	["n|<leader>at"] = map_cr("AerialToggle! right"):with_noremap():with_silent(),
 	-- Plugin Undotree
 	["n|<Leader>u"] = map_cr("UndotreeToggle"):with_noremap():with_silent(),
 	-- Plugin Telescope
 	["n|<Leader>fp"] = map_cu("lua require('telescope').extensions.project.project{}"):with_noremap():with_silent(),
-	["n|<Leader>fr"] = map_cu("lua require('telescope').extensions.frecency.frecency{}"):with_noremap():with_silent(),
 	["n|<Leader>fe"] = map_cu("Telescope oldfiles"):with_noremap():with_silent(),
 	["n|<Leader>ff"] = map_cu("Telescope find_files"):with_noremap():with_silent(),
 	["n|<Leader>fc"] = map_cu("Telescope colorscheme"):with_noremap():with_silent(),
@@ -43,7 +63,6 @@ local plugins_map = {
 	["n|<Leader>fw"] = map_cu("Telescope live_grep"):with_noremap():with_silent(),
 	["n|<Leader>fb"] = map_cu("Telescope buffers"):with_noremap():with_silent(),
 	["n|<Leader>fg"] = map_cu("Telescope git_files"):with_noremap():with_silent(),
-	["n|<Leader>fz"] = map_cu("Telescope zoxide list"):with_noremap():with_silent(),
 	-- Plugin Hop
 	["n|<leader>c"] = map_cu("HopChar1"):with_noremap(),
 	["n|<leader>cc"] = map_cu("HopChar2"):with_noremap(),
@@ -58,7 +77,6 @@ local plugins_map = {
 	["n|F"] = map_cmd("v:lua.enhance_ft_move('F')"):with_expr(),
 	["n|t"] = map_cmd("v:lua.enhance_ft_move('t')"):with_expr(),
 	["n|T"] = map_cmd("v:lua.enhance_ft_move('T')"):with_expr(),
-	["n|;"] = map_cmd("v:lua.enhance_ft_move(';')"):with_expr(),
 	-- Plugin auto_session
 	["n|<leader>ss"] = map_cu("SaveSession"):with_noremap():with_silent(),
 	["n|<leader>sr"] = map_cu("RestoreSession"):with_noremap():with_silent(),
@@ -66,9 +84,6 @@ local plugins_map = {
 	-- Plugin Diffview
 	["n|<leader>D"] = map_cr("DiffviewOpen"):with_silent():with_noremap(),
 	["n|<leader><leader>D"] = map_cr("DiffviewClose"):with_silent():with_noremap(),
-	-- Plugin Tabout
-	["i|<C-'>"] = map_cmd([[<Plug>(TaboutMulti)]]):with_silent(),
-	["i|<C-;>"] = map_cmd([[<Plug>(TaboutBackMulti)]]):with_silent(),
 	-- Plugin BuffDelete
 	["n|<C-w>"] = map_cr("Bdelete!"):with_noremap():with_silent(),
 }

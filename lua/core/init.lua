@@ -52,13 +52,6 @@ local leader_map = function()
 	vim.api.nvim_set_keymap("x", " ", "", { noremap = true })
 end
 
-local function check_conda()
-	local venv = os.getenv("CONDA_PREFIX")
-	if venv then
-		vim.g.python3_host_prog = venv .. "/bin/python"
-	end
-end
-
 local load_core = function()
 	local pack = require("core.pack")
 	createdir()
