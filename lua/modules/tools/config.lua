@@ -1,11 +1,8 @@
 local config = {}
 
 function config.telescope()
-	vim.cmd([[packadd sqlite.lua]])
 	vim.cmd([[packadd telescope-fzf-native.nvim]])
 	vim.cmd([[packadd telescope-project.nvim]])
-	vim.cmd([[packadd telescope-frecency.nvim]])
-	vim.cmd([[packadd telescope-zoxide]])
 	require("telescope").setup({
 		defaults = {
 			initial_mode = "insert",
@@ -50,11 +47,6 @@ function config.telescope()
 				override_file_sorter = true,
 				case_mode = "smart_case",
 			},
-			frecency = {
-				show_scores = true,
-				show_unindexed = true,
-				ignore_patterns = { "*.git/*", "*/tmp/*" },
-			},
 			project = {
 				base_dirs = { "~/go/src/code.byted.org/" },
 				hidden_files = true,
@@ -63,9 +55,8 @@ function config.telescope()
 	})
 	require("telescope").load_extension("fzf")
 	require("telescope").load_extension("project")
-	require("telescope").load_extension("zoxide")
-	require("telescope").load_extension("frecency")
 end
+
 function config.project()
 	require("project_nvim").setup({
 		detection_methods = { "pattern" },
