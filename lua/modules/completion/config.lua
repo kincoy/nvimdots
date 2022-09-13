@@ -9,6 +9,9 @@ function config.aerial()
 end
 
 function config.cmp()
+	local t = function(str)
+		return vim.api.nvim_replace_termcodes(str, true, true, true)
+	end
 	local border = function(hl)
 		return {
 			{ "╭", hl },
@@ -104,6 +107,20 @@ function config.cmp()
 			["<C-d>"] = cmp.mapping.scroll_docs(-4),
 			["<C-u>"] = cmp.mapping.scroll_docs(4),
 			["<C-e>"] = cmp.mapping.close(),
+			["<C-h>"] = function(fallback)
+				if require("luasnip").jumpable(-1) then
+					vim.fn.feedkeys(t("<Plug>luasnip-jump-prev"), "")
+				else
+					fallback()
+				end
+			end,
+			["<C-l>"] = function(fallback)
+				if require("luasnip").expand_or_jumpable() then
+					vim.fn.feedkeys(t("<Plug>luasnip-expand-or-jump"), "")
+				else
+					fallback()
+				end
+			end,
 		}),
 		snippet = {
 			expand = function(args)

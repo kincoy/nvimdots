@@ -16,9 +16,6 @@ local def_map = {
 	["n|s;"] = map_cr("resize -2"):with_silent(),
 	["n|s'"] = map_cr("resize +2"):with_silent(),
 	["n|s="] = map_cmd("<C-w>="):with_silent():with_noremap(),
-	["n|<leader>t"] = map_cr("sp | terminal"):with_noremap():with_silent(),
-	["n|<leader>vt"] = map_cr("vsp | terminal"):with_noremap():with_silent(),
-	["t|<ESC>"] = map_cr("<C-\\><C-n>"):with_noremap():with_silent(),
 	["n|<C-s>"] = map_cu("write"):with_noremap(),
 	["n|Y"] = map_cmd("y$"),
 	["n|yy"] = map_cmd("0y$"),
@@ -32,7 +29,9 @@ local def_map = {
 	["n|<C-j>"] = map_cmd("<C-w>j"):with_noremap(),
 	["n|<C-k>"] = map_cmd("<C-w>k"):with_noremap(),
 	["n|<C-q>"] = map_cr("wq"),
+	["n|qq"] = map_cr("q!"),
 	["n|<leader>,"] = map_cr("nohlsearch"):with_noremap():with_silent(),
+
 	-- Insert
 	["i|jj"] = map_cmd("<Esc>"),
 	["i|<C-a>"] = map_cmd("<ESC>^i"):with_noremap(),

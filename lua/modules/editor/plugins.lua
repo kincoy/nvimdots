@@ -76,6 +76,17 @@ editor["abecodes/tabout.nvim"] = {
 	config = conf.tabout,
 }
 
+editor["akinsho/toggleterm.nvim"] = {
+	opt = true,
+	event = "UIEnter",
+	config = conf.toggleterm,
+}
+
+editor["romainl/vim-cool"] = {
+	opt = true,
+	event = { "CursorMoved", "InsertEnter" },
+}
+
 editor["sindrets/diffview.nvim"] = { opt = true, cmd = { "DiffviewOpen" } }
 
 editor["luukvbaal/stabilize.nvim"] = { opt = true, event = "BufReadPost" }

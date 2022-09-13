@@ -86,6 +86,18 @@ local plugins_map = {
 	["n|<leader><leader>D"] = map_cr("DiffviewClose"):with_silent():with_noremap(),
 	-- Plugin BuffDelete
 	["n|<C-w>"] = map_cr("Bdelete!"):with_noremap():with_silent(),
+	-- Plugin toggleterm
+	-- ["t|<Esc><Esc>"] = map_cmd([[<C-\><C-n>]]), -- switch to normal mode in terminal.
+	["n|<C-\\>["] = map_cr([[execute v:count . "ToggleTerm direction=horizontal"]]):with_noremap():with_silent(),
+	["i|<C-\\>["] = map_cmd("<Esc><Cmd>ToggleTerm direction=horizontal<CR>"):with_noremap():with_silent(),
+	["t|<C-\\>"] = map_cmd("<Esc><Cmd>ToggleTerm<CR>"):with_noremap():with_silent(),
+	["n|<C-\\>]"] = map_cr([[execute v:count . "ToggleTerm direction=vertical"]]):with_noremap():with_silent(),
+	["i|<C-\\>]"] = map_cmd("<Esc><Cmd>ToggleTerm direction=vertical<CR>"):with_noremap():with_silent(),
+	["n|<C-\\>\\"] = map_cr([[execute v:count . "ToggleTerm direction=float"]]):with_noremap():with_silent(),
+	["i|<C-\\>\\"] = map_cmd("<Esc><Cmd>ToggleTerm direction=float<CR>"):with_noremap():with_silent(),
+	["n|<leader>g"] = map_cr("lua toggle_lazygit()"):with_noremap():with_silent(),
+	["t|<leader>g"] = map_cmd("<Esc><Cmd>lua toggle_lazygit()<CR>"):with_noremap():with_silent(),
+	["n|<leader>G"] = map_cu("Git"):with_noremap():with_silent(),
 }
 
 return plugins_map
