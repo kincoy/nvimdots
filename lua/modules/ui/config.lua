@@ -147,7 +147,6 @@ function config.nvim_tree()
 		update_focused_file = { enable = true, update_cwd = true },
 		view = {
 			width = 30,
-			height = 30,
 			side = "left",
 			number = false,
 			relativenumber = false,
