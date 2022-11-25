@@ -117,11 +117,6 @@ function config.lualine()
 				"filesize",
 				{
 					"fileformat",
-					-- symbols = {
-					--   unix = '', -- e712
-					--   dos = '', -- e70f
-					--   mac = '', -- e711
-					-- },
 					symbols = { unix = "LF", dos = "CRLF", mac = "CR" },
 				},
 				"encoding",
@@ -155,7 +150,7 @@ function config.nvim_tree()
 			mappings = {
 				custom_only = false,
 				list = {
-					{ key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
+					{ key = { "<CR>", "o", "<2-LeftMouse>", "<TAB>" }, action = "edit" },
 					{ key = "v", action = "vsplit" },
 					{ key = "h", action = "split" },
 					{ key = "a", action = "create" },

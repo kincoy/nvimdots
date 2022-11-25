@@ -22,9 +22,10 @@ completion["williamboman/mason.nvim"] = {
 	},
 }
 
-completion["kevinhwang91/nvim-bqf"] = { opt = true, ft = "qf", config = conf.bqf }
-
-completion["tami5/lspsaga.nvim"] = { opt = true, after = "nvim-lspconfig" }
+completion["glepnir/lspsaga.nvim"] = {
+	opt = true,
+	config = conf.lspsaga,
+}
 
 completion["ray-x/lsp_signature.nvim"] = { opt = true, after = "nvim-lspconfig" }
 
@@ -32,6 +33,7 @@ completion["hrsh7th/nvim-cmp"] = {
 	config = conf.cmp,
 	event = "InsertEnter",
 	requires = {
+		{ "onsails/lspkind.nvim" },
 		{ "lukas-reineke/cmp-under-comparator" },
 		{ "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
 		{ "hrsh7th/cmp-nvim-lsp", after = "cmp_luasnip" },

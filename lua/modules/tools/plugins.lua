@@ -25,6 +25,12 @@ tools["nvim-telescope/telescope-project.nvim"] = {
 	after = "telescope-fzf-native.nvim",
 }
 
+tools["folke/trouble.nvim"] = {
+	opt = false,
+	cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
+	config = conf.trouble,
+}
+
 tools["folke/which-key.nvim"] = {
 	opt = true,
 	keys = ",",

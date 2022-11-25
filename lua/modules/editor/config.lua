@@ -8,8 +8,6 @@ function config.nvim_treesitter()
 	require("nvim-treesitter.configs").setup({
 		ensure_installed = {
 			"bash",
-			"c",
-			"cpp",
 			"lua",
 			"go",
 			"gomod",
@@ -79,11 +77,7 @@ function config.illuminate()
 end
 
 function config.nvim_comment()
-	require("nvim_comment").setup({
-		hook = function()
-			require("ts_context_commentstring.internal").update_commentstring()
-		end,
-	})
+	require("nvim_comment").setup({})
 end
 
 function config.hop()
@@ -201,6 +195,18 @@ function config.toggleterm()
 		direction = "horizontal",
 		close_on_exit = true, -- close the terminal window when the process exits
 		shell = vim.o.shell, -- change the default shell
+	})
+end
+
+function config.accelerated_jk()
+	require("accelerated-jk").setup({
+		mode = "time_driven",
+		enable_deceleration = false,
+		acceleration_motions = {},
+		acceleration_limit = 150,
+		acceleration_table = { 7, 12, 17, 21, 24, 26, 28, 30 },
+		-- when 'enable_deceleration = true', 'deceleration_table = { {200, 3}, {300, 7}, {450, 11}, {600, 15}, {750, 21}, {900, 9999} }'
+		deceleration_table = { { 150, 9999 } },
 	})
 end
 
