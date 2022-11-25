@@ -4,10 +4,6 @@ function config.nvim_lsp()
 	require("modules.completion.lsp")
 end
 
-function config.aerial()
-	require("aerial").setup({})
-end
-
 function config.cmp()
 	local t = function(str)
 		return vim.api.nvim_replace_termcodes(str, true, true, true)

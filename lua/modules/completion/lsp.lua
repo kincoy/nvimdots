@@ -3,7 +3,6 @@ local formatting = require("modules.completion.formatting")
 vim.cmd([[packadd lsp_signature.nvim]])
 vim.cmd([[packadd lspsaga.nvim]])
 vim.cmd([[packadd cmp-nvim-lsp]])
-vim.cmd([[packadd aerial.nvim]])
 vim.cmd([[packadd vim-illuminate]])
 
 local nvim_lsp = require("lspconfig")
@@ -14,10 +13,9 @@ local mason_lsp = require("mason-lspconfig")
 mason.setup()
 mason_lsp.setup({
 	ensure_installed = {
-		"bash-language-server",
+		"bashls",
 		"efm",
-		"lua-language-server",
-		"clangd",
+		"sumneko_lua",
 		"gopls",
 		"pyright",
 	},
@@ -33,7 +31,7 @@ saga.init_lsp_saga({
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 local function custom_attach(client)
 	require("lsp_signature").on_attach({
@@ -45,8 +43,6 @@ local function custom_attach(client)
 		hi_parameter = "Search",
 		handler_opts = { "double" },
 	})
-	require("aerial").on_attach(client)
-	require("illuminate").on_attach(client)
 end
 
 -- Override server settings here
@@ -116,17 +112,12 @@ efmls.init({
 -- Require `efmls-configs-nvim`'s config here
 
 local vint = require("efmls-configs.linters.vint")
-local clangtidy = require("efmls-configs.linters.clang_tidy")
 local flake8 = require("efmls-configs.linters.flake8")
 local shellcheck = require("efmls-configs.linters.shellcheck")
 local black = require("efmls-configs.formatters.black")
 local luafmt = require("efmls-configs.formatters.stylua")
 local prettier = require("efmls-configs.formatters.prettier")
 local shfmt = require("efmls-configs.formatters.shfmt")
-local clangfmt = {
-	formatCommand = "clang-format -style='{BasedOnStyle: LLVM, IndentWidth: 4}'",
-	formatStdin = true,
-}
 
 -- Override default config here
 flake8 = vim.tbl_extend("force", flake8, {
@@ -142,8 +133,6 @@ flake8 = vim.tbl_extend("force", flake8, {
 efmls.setup({
 	vim = { formatter = vint },
 	lua = { formatter = luafmt },
-	c = { formatter = clangfmt, linter = clangtidy },
-	cpp = { formatter = clangfmt, linter = clangtidy },
 	python = { formatter = black, linter = flake8 },
 	yaml = { formatter = prettier },
 	sh = { formatter = shfmt, linter = shellcheck },
