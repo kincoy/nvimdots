@@ -139,7 +139,7 @@ function config.nvim_tree()
 		respect_buf_cwd = true,
 		auto_reload_on_write = true,
 		update_cwd = true,
-		update_focused_file = { enable = true, update_cwd = true },
+		update_focused_file = { enable = true, update_cwd = false },
 		view = {
 			width = 30,
 			side = "left",
